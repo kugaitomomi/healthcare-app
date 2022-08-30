@@ -1,0 +1,20 @@
+<!-- base.htmlを読み込む。 -->
+{% extends "base.html" %}
+{% block content %}
+<h1>新規登録</h1>
+<form method="POST">
+    <p>今日の日付</p>
+      <label for="low_morning">血圧(朝)</label>
+      <input type="number" name="low_morning" id="low_morning">
+      <label for="low_evening">血圧(夕)</label>
+      <input type="number" name="low_evening" id="low_evening">
+      <label for="pulse">脈拍</label>
+      <input type="number" name="pulse" id="pulse">
+      <label for="weight">体重</label>
+      <input type="number" name="weight" id="weight">
+      <textarea name="medicine" id="medicine" cols="30" rows="10"></textarea>
+      <label for="diary"></label>
+      <input type="text" name="diary" id="diary">
+      <input type="submit" value="新規登録">
+  </form>
+{% endblock %}

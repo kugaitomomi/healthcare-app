@@ -1,0 +1,32 @@
+<!-- base.htmlを読み込む。 -->
+{% extends "base.html" %}
+{% block content %}
+  <h1>体調管理アプリ</h1>
+  <article>
+    <p>今日の日付</p>
+    <dl>
+      <dt>血圧(朝)</dt>
+      <dd>上/下</dd>
+    </dl>
+    <dl>
+      <dt>血圧(夕)</dt>
+      <dd>上/下</dd>
+    </dl>
+    <dl>
+      <dt>脈拍</dt>
+      <dd>120</dd>
+    </dl>
+    <dl>
+      <dt>体重</dt>
+      <dd>50kg</dd>
+    </dl>
+    <dl>
+      <dt>今日飲んだお薬</dt>
+      <dd>テキストが入ります。</dd>
+    </dl>
+    <dl>
+      <dt>一言日記</dt>
+      <dd>テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</dd>
+    </dl>
+  </article>
+  {% endblock %}
