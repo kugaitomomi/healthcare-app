@@ -1,0 +1,32 @@
+<!-- base.htmlを読み込む。 -->
+{% extends "base.html" %}
+{% block content %}
+<h1>新規登録</h1>
+<form method="POST">
+  <p>今日の日付:{{ created_at }}</p>
+  <label for="upper_morning">血圧/上(朝)</label>
+  <input type="number" name="upper_morning" value={{ post.upper_morning }} id="upper_morning">
+
+  <label for="low_morning">血圧/下(朝)</label>
+  <input type="number" name="low_morning" value={{ post.low_morning }} id="low_morning">
+
+  <label for="upper_evening">血圧/上(夕)</label>
+  <input type="number" name="upper_evening" value={{ post.upper_evening }} id="upper_evening">
+
+  <label for="low_evening">血圧/下(夕)</label>
+  <input type="number" name="low_evening" value={{ post.low_evening }} id="low_evening">
+
+  <label for="pulse">脈拍</label>
+  <input type="number" name="pulse" value={{ post.pulse }} id="pulse">
+
+  <label for="weight">体重</label>
+  <input type="number" name="weight" value={{ post.weight }} id="weight">
+
+  <textarea name="medicine" id="medicine" value={{ post.medicine }} cols="30" rows="10"></textarea>
+
+  <label for="diary">一言日記</label>
+  <input type="text" name="diary" value={{ post.diary }} id="diary">
+
+  <input type="submit" value="更新">
+</form>
+{% endblock %}

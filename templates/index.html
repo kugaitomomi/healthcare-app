@@ -2,32 +2,36 @@
 {% extends "base.html" %}
 {% block content %}
   <h1>体調管理アプリ</h1>
+  {% for post in posts %}
   <a href="/create" role="button">新規作成画面</a>
+  <a href="/{{post.id}}/update" role="button">編集</a>
+  <a href="/{{post.id}}/delete" role="button">削除</a>
   <article>
-    <p>今日の日付</p>
+    <p>{{post.created_at}}</p>
     <dl>
       <dt>血圧(朝)</dt>
-      <dd>上/下</dd>
+      <dd>{{post.upper_morning}}/{{post.low_morning}}</dd>
     </dl>
     <dl>
       <dt>血圧(夕)</dt>
-      <dd>上/下</dd>
+      <dd>{{post.upper_evening}}/{{post.low_evening}}</dd>
     </dl>
     <dl>
       <dt>脈拍</dt>
-      <dd>120</dd>
+      <dd>{{post.pulse}}</dd>
     </dl>
     <dl>
       <dt>体重</dt>
-      <dd>50kg</dd>
+      <dd>{{post.weight}}kg</dd>
     </dl>
     <dl>
       <dt>今日飲んだお薬</dt>
-      <dd>テキストが入ります。</dd>
+      <dd>{{post.medicine}}</dd>
     </dl>
     <dl>
       <dt>一言日記</dt>
-      <dd>テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</dd>
+      <dd>{{post.diary}}</dd>
     </dl>
   </article>
+    {% endfor %}
   {% endblock %}
