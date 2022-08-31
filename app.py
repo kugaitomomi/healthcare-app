@@ -2,14 +2,12 @@ from urllib import request
 from flask import Flask
 from flask import render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from flask_bootstrap import Bootstrap
 from datetime import datetime
 import pytz
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///health.db'
 db = SQLAlchemy(app)
-bootstrap = Bootstrap(app)
 
 
 class Post(db.Model):

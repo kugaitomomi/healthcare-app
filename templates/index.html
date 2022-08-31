@@ -1,41 +1,46 @@
 <!-- base.htmlを読み込む。 -->
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 {% block content %}
-<div class="container">
-  <h1>体調管理アプリ</h1>
-  {% for post in posts %}
-  <a href="/create" role="button" class="btn btn-primary">新規作成画面</a>
-  <a href="/{{post.id}}/update" role="button">編集</a>
-  <a href="/{{post.id}}/delete" role="button">削除</a>
-  <article>
-    <p>{{post.created_at}}</p>
-    <div class="row">
-    <dl class="col">
-      <dt>血圧(朝)</dt>
-      <dd>{{post.upper_morning}}/{{post.low_morning}}</dd>
-    </dl>
-    <dl class="col">
-      <dt>血圧(夕)</dt>
-      <dd>{{post.upper_evening}}/{{post.low_evening}}</dd>
-    </dl>
-    <dl class="col">
-      <dt>脈拍</dt>
-      <dd>{{post.pulse}}</dd>
-    </dl>
-    <dl>
-      <dt>体重</dt>
-      <dd>{{post.weight}}kg</dd>
-    </dl>
-    <dl>
-      <dt>今日飲んだお薬</dt>
-      <dd>{{post.medicine}}</dd>
-    </dl>
-    <dl>
-      <dt>一言日記</dt>
-      <dd>{{post.diary}}</dd>
-    </dl>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between">
+    <h1>体調管理アプリ</h1>
+    <p class="mt-2 mb-4"><a href="/create" role="button" class="btn btn-primary">新規作成画面</a></p>
+  </div>
+    {% for post in posts %}
+  <div class="border px-4 py-2 mb-4">
+      <article>
+        <p>{{post.created_at}}</p>
+      <div class="d-flex justify-content-between">
+      <dl class="">
+        <dt>血圧(朝)</dt>
+        <dd>{{post.upper_morning}}/{{post.low_morning}}</dd>
+      </dl>
+      <dl class="">
+        <dt>血圧(夕)</dt>
+        <dd>{{post.upper_evening}}/{{post.low_evening}}</dd>
+      </dl>
+      <dl class="">
+        <dt>脈拍</dt>
+        <dd>{{post.pulse}}</dd>
+      </dl>
+      <dl class="">
+        <dt>体重</dt>
+        <dd>{{post.weight}}kg</dd>
+      </dl>
+      <dl class="">
+        <dt>今日飲んだお薬</dt>
+        <dd>{{post.medicine}}</dd>
+      </dl>
+      <dl class="">
+        <dt>一言日記</dt>
+        <dd>{{post.diary}}</dd>
+      </dl>
     </div>
-  </article>
+    </article>
+  <div class="d-flex justify-content-end">
+    <p class="me-4"><a href="/{{post.id}}/update" role="button" class="btn btn-success">編集</a></p>
+    <p><a href="/{{post.id}}/delete" role="button" class="btn btn-danger">削除</a></p>
+  </div>
 </div>
     {% endfor %}
   {% endblock %}

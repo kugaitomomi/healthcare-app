@@ -1,32 +1,44 @@
 <!-- base.htmlを読み込む。 -->
 {% extends "base.html" %}
 {% block content %}
-<h1>新規登録</h1>
-<form method="POST">
-    <p>今日の日付:{{ created_at }}</p>
-      <label for="upper_morning">血圧/上(朝)</label>
-      <input type="number" name="upper_morning" id="upper_morning">
-
-      <label for="low_morning">血圧/下(朝)</label>
-      <input type="number" name="low_morning" id="low_morning">
-
-      <label for="upper_evening">血圧/上(夕)</label>
-      <input type="number" name="upper_evening" id="upper_evening">
-
-      <label for="low_evening">血圧/下(夕)</label>
-      <input type="number" name="low_evening" id="low_evening">
-
-      <label for="pulse">脈拍</label>
-      <input type="number" name="pulse" id="pulse">
-
-      <label for="weight">体重</label>
-      <input type="number" name="weight" id="weight">
-
-      <textarea name="medicine" id="medicine" cols="30" rows="10"></textarea>
-
-      <label for="diary">一言日記</label>
-      <input type="text" name="diary" id="diary">
-
-      <input type="submit" value="新規登録">
+<div class="container pb-4">
+  <h1 class="text-center mb-3">新規登録</h1>
+  <form method="POST">
+  <p class="w-25 fw-bold fs-5">今日の日付:{{ created_at }}</p>
+  <div class="d-flex mb-4">
+    <label class="w-25 fw-bold fs-5" for="upper_morning">血圧/上(朝)</label>
+    <input class="w-75" type="number" name="upper_morning" id="upper_morning">
+  </div>
+  <div class="d-flex mb-4">
+    <label class="w-25 fw-bold fs-5" for="low_morning">血圧/下(朝)</label>
+    <input class="w-75" type="number" name="low_morning" id="low_morning">
+  </div>
+  <div class="d-flex mb-4">
+    <label class="w-25 fw-bold fs-5" for="upper_evening">血圧/上(夕)</label>
+    <input class="w-75" type="number" name="upper_evening" id="upper_evening">
+  </div>
+  <div class="d-flex mb-4">
+    <label class="w-25 fw-bold fs-5" for="low_evening">血圧/下(夕)</label>
+    <input class="w-75" type="number" name="low_evening" id="low_evening">
+  </div>
+  <div class="d-flex mb-4">
+    <label class="w-25  fw-bold fs-5" for="pulse">脈拍</label>
+    <input class="w-75" type="number" name="pulse" id="pulse">
+  </div>
+  <div class="d-flex mb-4">
+    <label class="w-25 fw-bold fs-5" for="weight">体重</label>
+    <input class="w-75" class="w-75" type="number" name="weight" id="weight">
+  </div>
+  <div class="d-flex align-items-center mb-4">
+    <p class="w-25  fw-bold fs-5" >お薬ログ</p>
+    <textarea class="w-75" name="medicine" id="medicine" cols="30" rows="10"></textarea>
+  </div>
+  <div class="d-flex mb-5">
+    <label class="w-25  fw-bold fs-5" for="diary">一言日記</label>
+    <input class="w-75" type="text" name="diary" id="diary">
+  </div>
+  <div class="text-center">
+    <input type="submit" class="btn btn-primary" value="新規登録">
   </form>
+</div>
 {% endblock %}
