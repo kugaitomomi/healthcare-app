@@ -1,22 +1,24 @@
 <!-- base.htmlを読み込む。 -->
-{% extends "base.html" %}
+{% extends "bootstrap/base.html" %}
 {% block content %}
+<div class="container">
   <h1>体調管理アプリ</h1>
   {% for post in posts %}
-  <a href="/create" role="button">新規作成画面</a>
+  <a href="/create" role="button" class="btn btn-primary">新規作成画面</a>
   <a href="/{{post.id}}/update" role="button">編集</a>
   <a href="/{{post.id}}/delete" role="button">削除</a>
   <article>
     <p>{{post.created_at}}</p>
-    <dl>
+    <div class="row">
+    <dl class="col">
       <dt>血圧(朝)</dt>
       <dd>{{post.upper_morning}}/{{post.low_morning}}</dd>
     </dl>
-    <dl>
+    <dl class="col">
       <dt>血圧(夕)</dt>
       <dd>{{post.upper_evening}}/{{post.low_evening}}</dd>
     </dl>
-    <dl>
+    <dl class="col">
       <dt>脈拍</dt>
       <dd>{{post.pulse}}</dd>
     </dl>
@@ -32,6 +34,8 @@
       <dt>一言日記</dt>
       <dd>{{post.diary}}</dd>
     </dl>
+    </div>
   </article>
+</div>
     {% endfor %}
   {% endblock %}
