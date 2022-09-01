@@ -4,44 +4,47 @@
 
 {% block content %}
 <div class="container mt-4">
-  <div class="d-flex justify-content-between">
-    <h1>体調管理アプリ</h1>
-    <p class="mt-2 mb-4"><a href="/create" role="button" class="btn btn-primary">新規作成画面</a></p>
-    <p class="mt-2 mb-4"><a href="/logout" role="button" class="btn btn-primary">ログアウト</a></p>
+  <div>
+    <h1 class="text-center">Health log</h1>
+    <div class="d-flex">
+      <p class="mt-2 mb-4 mr-4"><a href="/create" role="button" class="btn btn-primary">Register</a></p>
+      <p class="mt-2 mb-4"><a href="/logout" role="button" class="btn btn-secondary">Logout</a></p>
+    </div>
   </div>
     {% for post in posts %}
   <div class="border px-4 py-2 mb-4">
       <article>
         <p>{{post.created_at}}</p>
-      <div class="d-flex justify-content-between">
+      <div class="d-md-flex justify-content-between">
       <dl>
-        <dt>血圧(朝)</dt>
+        <!-- <dt>血圧(朝)</dt> -->
+        <dt>Blood pressure(朝)</dt>
         <dd>{{post.upper_morning}}/{{post.low_morning}}</dd>
       </dl>
       <dl>
-        <dt>血圧(夕)</dt>
+        <dt>Blood pressure(夕)</dt>
         <dd>{{post.upper_evening}}/{{post.low_evening}}</dd>
       </dl>
       <dl>
-        <dt>脈拍</dt>
+        <dt>Pulse</dt>
         <dd>{{post.pulse}}</dd>
       </dl>
       <dl>
-        <dt>体重</dt>
+        <dt>Weight</dt>
         <dd>{{post.weight}}kg</dd>
       </dl>
       <dl>
-        <dt>今日飲んだお薬</dt>
+        <dt>Medicine</dt>
         <dd>{{post.medicine}}</dd>
       </dl>
       <dl>
-        <dt>一言日記</dt>
+        <dt>Diary</dt>
         <dd>{{post.diary}}</dd>
       </dl>
     </div>
     </article>
-  <div class="d-flex justify-content-end">
-    <p class="me-4"><a href="/{{post.id}}/update" role="button" class="btn btn-success">編集</a></p>
+  <div class="d-md-flex justify-content-end">
+    <p class="mr-4"><a href="/{{post.id}}/update" role="button" class="btn btn-success">編集</a></p>
     <p><a href="/{{post.id}}/delete" role="button" class="btn btn-danger">削除</a></p>
   </div>
 </div>
