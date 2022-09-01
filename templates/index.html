@@ -1,5 +1,7 @@
 <!-- base.htmlを読み込む。 -->
-{% extends "base.html" %}
+{% extends "bootstrap/base.html" %}
+{% block title %}TOPページ{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
   <div class="d-flex justify-content-between">
@@ -43,5 +45,6 @@
     <p><a href="/{{post.id}}/delete" role="button" class="btn btn-danger">削除</a></p>
   </div>
 </div>
+
     {% endfor %}
   {% endblock %}

@@ -1,3 +1,4 @@
+from ensurepip import bootstrap
 from enum import unique
 from operator import ge
 from urllib import request
@@ -5,6 +6,8 @@ from flask import Flask
 from flask import render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
+from flask_bootstrap import Bootstrap
+
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from datetime import datetime
@@ -14,6 +17,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///health.db'
 app.config['SECRET_KEY'] = os.urandom(24)
 db = SQLAlchemy(app)
+bootstrap = Bootstrap(app)
 
 login_maneger = LoginManager()
 login_maneger.init_app(app)
