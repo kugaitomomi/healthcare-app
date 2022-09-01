@@ -1,8 +1,4 @@
-from ensurepip import bootstrap
-from enum import unique
-from operator import ge
-from urllib import request
-from flask import Flask
+from flask import Flask, make_response
 from flask import render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
@@ -12,18 +8,29 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from datetime import datetime
 import pytz
+import pandas as pd
+import csv
+from io import StringIO
+
 
 app = Flask(__name__)
+DB_URL = 'sqlite:///health.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///health.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.urandom(24)
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
+
+df = pd.read_csv('demo.csv')
+header = df.columns
+record = df.values.tolist()
 
 login_maneger = LoginManager()
 login_maneger.init_app(app)
 
 
 class Post(db.Model):
+    __tablename__ = "healthlog"
     id = db.Column(db.Integer, primary_key=True)
     low_morning = db.Column(db.Integer, nullable=True)
     upper_morning = db.Column(db.Integer, nullable=True)
@@ -38,6 +45,7 @@ class Post(db.Model):
 
 
 class User(UserMixin, db.Model):
+    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(12))
@@ -147,3 +155,29 @@ def delete(id):
     db.session.delete(post)
     db.session.commit()
     return redirect('/')
+
+
+@app.route('/demo')
+def demo():
+    return render_template('demo.html', header=header, record=record)
+
+
+@app.route('/quickbooks/<obj>')
+def download(obj):
+
+    f = StringIO()
+    writer = csv.writer(
+        f, quotechar='"', quoting=csv.QUOTE_ALL, lineterminator="\n")
+
+    if obj == 'healthlog':
+        writer.writerow(
+            ['id', 'upper_morning', 'low_morning', 'upper_evening', 'low_evening', 'pulse', 'weight', 'medicine', 'diary' 'created_at'])
+        for post in Post.query.all():
+            writer.writerow(
+                [post.id, post.upper_morning, post.low_morning, post.upper_evening, post.low_evening, post.pulse, post.weight, post.medicine, post.diary, post.created_at])
+
+    res = make_response()
+    res.data = f.getvalue()
+    res.headers['Content-Type'] = 'text/csv'
+    res.headers['Content-Disposition'] = 'attachment; filename=' + obj + '.csv'
+    return res
