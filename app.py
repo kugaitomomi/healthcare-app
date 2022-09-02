@@ -1,14 +1,13 @@
 from flask import Flask, make_response
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, Blueprint
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required
-from flask_bootstrap import Bootstrap
-
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 from datetime import datetime
 import pytz
 import pandas as pd
+import matplotlib.pyplot as plt
 import csv
 from io import StringIO
 
@@ -19,9 +18,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///health.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.urandom(24)
 db = SQLAlchemy(app)
-bootstrap = Bootstrap(app)
+image = Blueprint("image", __name__, static_url_path='/images',
+                  static_folder='./static/images')
+app.register_blueprint(image)
 
-df = pd.read_csv('demo.csv')
+
+df = pd.read_csv('healthlog.csv')
 header = df.columns
 record = df.values.tolist()
 
@@ -157,9 +159,9 @@ def delete(id):
     return redirect('/')
 
 
-@app.route('/demo')
-def demo():
-    return render_template('demo.html', header=header, record=record)
+@app.route('/graph')
+def graph():
+    return render_template('graph.html', header=header, record=record)
 
 
 @app.route('/quickbooks/<obj>')

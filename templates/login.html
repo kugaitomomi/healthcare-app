@@ -1,19 +1,19 @@
 <!-- base.htmlを読み込む。 -->
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 {% block content %}
+<h1 class="text-center mb-3 title">Simple health</h1>
 <div class="container pb-4">
-  <h1 class="text-center mb-3">ログイン画面</h1>
   <form method="POST">
   <div class="align-items-center mb-4">
-    <label class="form-label fw-bold fs-5" for="username">ユーザー名</label>
+    <label class="form-label fw-bold fs-5" for="username">User Name</label>
     <input class="form-control" type="text" name="username" id="username">
   </div>
   <div class="mb-5">
-    <label class="form-labelfw-bold fs-5" for="password">パスワード</label>
+    <label class="form-label fw-bold fs-5" for="password">Password</label>
     <input class="form-control" type="password" name="password" id="password">
   </div>
   <div class="text-center">
-    <input type="submit" class="btn btn-primary" value="ログイン">
+    <input type="submit" class="btn btn-primary" value="login">
   </form>
 </div>
 {% endblock %}

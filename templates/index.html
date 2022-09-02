@@ -1,14 +1,15 @@
 <!-- base.htmlを読み込む。 -->
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 {% block title %}TOPページ{% endblock %}
 
 {% block content %}
+<h1 class="text-center title">Simple Health</h1>
 <div class="container mt-4">
   <div>
-    <h1 class="text-center">Health log</h1>
     <div class="d-flex">
-      <p class="mt-2 mb-4 mr-4"><a href="/create" role="button" class="btn btn-primary">Register</a></p>
-      <p class="mt-2 mb-4 mr-4"><a href="/quickbooks/healthlog" role="button" class="btn btn-primary">CSV</a></p>
+      <p class="mt-2 mb-4 me-4"><a href="/create" role="button" class="btn btn-primary">Register</a></p>
+      <p class="mt-2 mb-4 me-4"><a href="/quickbooks/healthlog" role="button" class="btn btn-primary">CSV</a></p>
+      <p class="mt-2 mb-4 me-4"><a href="/graph" role="button" class="btn btn-primary">Graph</a></p>
       <p class="mt-2 mb-4"><a href="/logout" role="button" class="btn btn-secondary">Logout</a></p>
     </div>
   </div>
@@ -18,12 +19,11 @@
         <p>{{post.created_at}}</p>
       <div class="d-md-flex justify-content-between">
       <dl>
-        <!-- <dt>血圧(朝)</dt> -->
-        <dt>Blood pressure(朝)</dt>
+        <dt>Blood pressure <img class="img01" src="{{ url_for('image.static', filename='icon01.png') }}" alt="Morning"></dt>
         <dd>{{post.upper_morning}}/{{post.low_morning}}</dd>
       </dl>
       <dl>
-        <dt>Blood pressure(夕)</dt>
+        <dt>Blood pressure <img class="img02" src="{{ url_for('image.static', filename='icon02.png') }}" alt="Evening"></dt>
         <dd>{{post.upper_evening}}/{{post.low_evening}}</dd>
       </dl>
       <dl>
@@ -45,8 +45,8 @@
     </div>
     </article>
   <div class="d-md-flex justify-content-end">
-    <p class="mr-4"><a href="/{{post.id}}/update" role="button" class="btn btn-success">編集</a></p>
-    <p><a href="/{{post.id}}/delete" role="button" class="btn btn-danger">削除</a></p>
+    <p class="me-4"><a href="/{{post.id}}/update" role="button" class="btn btn-success">Edit</a></p>
+    <p><a href="/{{post.id}}/delete" role="button" class="btn btn-danger">Delete</a></p>
   </div>
 </div>
 
